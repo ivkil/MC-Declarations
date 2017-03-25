@@ -40,7 +40,7 @@ class MemberCouncil(models.Model):
     date_of_birth = models.DateField()
     education = models.CharField(max_length=128)
     party = models.CharField(max_length=128)
-    workplace = models.CharField(max_length=128)
+    workplace = models.CharField(max_length=512)
     residence = models.CharField(max_length=128)
 
     class Meta:
