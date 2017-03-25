@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from councils_members.models import MemberCouncil
+
+admin.site.register(MemberCouncil)
