@@ -1,7 +1,7 @@
 import csv
 import datetime
 
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandError
 
 from councils_members.models import Region, CouncilType, Council, MemberCouncil
 
@@ -11,7 +11,7 @@ class Command(BaseCommand):
         parser.add_argument('path', nargs='+', type=str)
 
     def handle(self, *args, **options):
-        with open(options['path'][0]) as f:
+        with open(options['path'][0], encoding='UTF-8') as f:
             mc_reader = csv.DictReader(f)
             for row in mc_reader:
                 region = Region.objects.get_or_create(title=row['region'])[0]
