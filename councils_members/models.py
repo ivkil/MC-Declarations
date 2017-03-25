@@ -4,12 +4,18 @@ from django.db import models
 class Region(models.Model):
     title = models.CharField(max_length=30)
 
+    class Meta:
+        ordering = ["title"]
+
     def __str__(self):
         return self.title
 
 
 class CouncilType(models.Model):
     title = models.CharField(max_length=40)
+
+    class Meta:
+        ordering = ["title"]
 
     def __str__(self):
         return self.title
@@ -19,7 +25,9 @@ class Council(models.Model):
     region = models.ForeignKey(Region, on_delete=models.CASCADE)
     type = models.ForeignKey(CouncilType, on_delete=models.CASCADE)
     title = models.CharField(max_length=128)
-    deputies_url = models.CharField(max_length=128)
+
+    class Meta:
+        ordering = ["title"]
 
     def __str__(self):
         return self.title + " (" + self.region.title + ")"
@@ -27,7 +35,7 @@ class Council(models.Model):
 
 class MemberCouncil(models.Model):
     name = models.CharField(max_length=128)
-    rada = models.ForeignKey(Council, on_delete=models.CASCADE)
+    council = models.ForeignKey(Council, on_delete=models.CASCADE)
     citizenship = models.CharField(max_length=32)
     date_of_birth = models.DateField()
     education = models.CharField(max_length=128)
@@ -35,5 +43,9 @@ class MemberCouncil(models.Model):
     workplace = models.CharField(max_length=128)
     residence = models.CharField(max_length=128)
 
+    class Meta:
+        ordering = ["name"]
+        verbose_name_plural = "members of councils"
+
     def __str__(self):
-        return self.name + " (" + self.rada.title + ")"
+        return self.name + " (" + self.council.title + ")"
