@@ -15,16 +15,17 @@
                 source: "/councils/autocomplete",
                 minLength: 2,
                 select: function (event, ui) {
-                    document.search_form.action = "/councils/" + ui.item.data;
+                    window.open("/councils/" + ui.item.data, "_blank");
+                    this.value = "";
+                    return false;
                 }
             });
         });
     </script>
 </head>
 <body>
-<form name="search_form" method="get" onsubmit="return false;">
+<div style="text-align:center;">
     <input type="text" name="council" id="autocomplete"/>
-    <input type="submit" value="Пошук" onclick="window.open(this.form.action, '_blank');">
-</form>
+</div>
 </body>
 </html>
