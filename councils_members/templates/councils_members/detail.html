@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ council.title }}</title>
+</head>
+<body>
+<ul>
+    {% for mc in council.membercouncil_set.all %}
+        <li>{{ mc.name }}</li>
+    {% endfor %}
+</ul>
+</body>
+</html>
