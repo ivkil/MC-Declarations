@@ -1,7 +1,5 @@
 from django.db import models
 
-from councils_members.models import MemberCouncil
-
 
 class Declaration(models.Model):
     id = models.CharField(primary_key=True, max_length=64)
@@ -11,7 +9,10 @@ class Declaration(models.Model):
     position = models.CharField(max_length=512, null=True)
     residence = models.CharField(max_length=512, null=True)
     link_pdf = models.CharField(max_length=256, null=True)
-    mc = models.ForeignKey(MemberCouncil, null=True)
+    checked = models.BooleanField()
 
     def __str__(self):
         return self.last_name + " (" + self.workplace + ")"
+
+    def link_nacp(self):
+        return "https://public.nazk.gov.ua/declaration/%s" % self.id

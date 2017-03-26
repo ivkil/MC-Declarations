@@ -1,5 +1,7 @@
 from django.db import models
 
+from declarations.models import Declaration
+
 
 class Region(models.Model):
     title = models.CharField(max_length=30)
@@ -42,6 +44,7 @@ class MemberCouncil(models.Model):
     party = models.CharField(max_length=128)
     workplace = models.CharField(max_length=512)
     residence = models.CharField(max_length=128)
+    declaration = models.ForeignKey(Declaration, null=True)
 
     class Meta:
         ordering = ["name"]

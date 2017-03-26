@@ -7,7 +7,8 @@
 <body>
 <ul>
     {% for mc in council.membercouncil_set.all %}
-        <li>{{ mc.name }}</li>
+        <li>{{ mc.name }} - {% if mc.declaration %} <a href="{{ mc.declaration.link_nacp }}"
+                                                       target="_blank">ДЕКЛАРАЦІЯ</a></li> {% endif %}
     {% endfor %}
 </ul>
 </body>
