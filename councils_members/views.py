@@ -17,7 +17,7 @@ def detail(request, council_id):
 def get_councils_autocomplete(request):
     if request.is_ajax():
         q = request.GET.get('term', '')
-        councils = Council.objects.filter(title__search=q)[:10]
+        councils = Council.objects.filter(title__icontains=q)[:10]
         results = []
         for council in councils:
             council_json = {'data': council.id, 'value': council.title}
