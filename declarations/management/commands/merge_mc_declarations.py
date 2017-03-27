@@ -32,7 +32,7 @@ class Command(BaseCommand):
             index += 1
             self.stdout.write("Working with declaration %s of %s total" % (index, total))
             name = declaration.last_name + " " + declaration.first_name
-            q = MemberCouncil.objects.filter(name__icontains=name, declaration__isnull=True)
+            q = MemberCouncil.objects.filter(name__icontains=name)
             if q.exists():
                 r = requests.get("https://declarations.com.ua/declaration/nacp_%s" % declaration.id).text
                 declaration.residence = residence(r)
