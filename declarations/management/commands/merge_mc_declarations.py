@@ -38,20 +38,27 @@ class Command(BaseCommand):
             if q.exists():
                 rs = (grequests.get(u) for u in get_urls(declaration.id))
                 resps = grequests.map(rs)
-                if resps[0].status_code == 200 & resps[1].status_code == 200:
+                if resps[0].status_code == 200 and resps[1].status_code == 200:
                     txt = resps[0].text
                     declaration.residence = residence(txt)
                     declaration.decl_json = resps[1].json()
-                    d = datetime.datetime.strptime(declaration.decl_json["declaration"]["intro"]["date"],
-                                                   "%Y-%m-%dT%H:%M:%S")
-                    if d >= datetime.datetime(2017, 1, 1):
+                    doc_type = declaration.decl_json["declaration"]["intro"]["doc_type"]
+                    year = declaration.decl_json["declaration"]["intro"]["declaration_year"]
+                    corrected = declaration.decl_json["declaration"]["intro"]["corrected"]
+                    if year == 2016 and doc_type == "Щорічна":
                         for mc in q:
                             if same_residence(mc.residence, declaration.residence):
-                                mc.declaration = declaration
-                                mc.save()
-                                count += 1
-                                self.stdout.write("Merged: " + declaration.residence + " - " + mc.residence)
-                                break
+                                if not mc.declaration or corrected:
+                                    mc.declaration = declaration
+                                    mc.save()
+                                    count += 1
+                                    self.stdout.write("Merged: " + declaration.residence + " - " + mc.residence)
+                                    break
+                        declaration.checked = True
+                        declaration.save()
+                    else:
+                        declaration.delete()
+                else:
                     declaration.checked = True
                     declaration.save()
         self.stdout.write("Finished. %s declarations have been merged" % count)
