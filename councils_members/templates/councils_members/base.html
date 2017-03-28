@@ -27,9 +27,27 @@
     </script>
     {% block head_scripts %}{% endblock %}
 </head>
-<body>
+<body style="background-color: #f9f9f9">
+<nav class="navbar navbar-default">
+    <div class="bg-warning">
+        <div class="navbar-header ">
+            <ul class="nav navbar-nav">
+                <li><a class="navbar-brand" href="/">Статки депутатів</a></li>
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{% url 'about' %}">Про проект</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 <div class="container-fluid">
-    {% block content %}{% endblock content %}
+    <div>
+        {% block content %}{% endblock content %}
+    </div>
 </div>
+
 </body>
 </html>

@@ -9,6 +9,10 @@ def index(request):
     return render(request, 'councils_members/index.html')
 
 
+def about(request):
+    return render(request, 'councils_members/about.html')
+
+
 def detail(request, council_id):
     council = get_object_or_404(Council, pk=council_id)
     return render(request, 'councils_members/detail.html', {'council': council})
