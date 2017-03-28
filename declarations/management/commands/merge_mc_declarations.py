@@ -58,9 +58,9 @@ class Command(BaseCommand):
                         declaration.save()
                     else:
                         declaration.delete()
-                else:
-                    declaration.checked = True
-                    declaration.save()
+            else:
+                declaration.checked = True
+                declaration.save()
         self.stdout.write("Finished. %s declarations have been merged" % count)
 
 
