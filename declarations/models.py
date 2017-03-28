@@ -1,3 +1,4 @@
+from django.contrib.postgres.fields import JSONField
 from django.db import models
 
 
@@ -8,6 +9,7 @@ class Declaration(models.Model):
     workplace = models.CharField(max_length=1024, null=True)
     position = models.CharField(max_length=512, null=True)
     residence = models.CharField(max_length=512, null=True)
+    decl_json = JSONField(null=True)
     checked = models.BooleanField(default=False)
 
     def __str__(self):
