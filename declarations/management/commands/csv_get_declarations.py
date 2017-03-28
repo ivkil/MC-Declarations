@@ -15,5 +15,8 @@ class Command(BaseCommand):
         with open(options['path'][0], encoding='UTF-8') as f:
             mc_reader = csv.DictReader(f)
             for row in mc_reader:
-                declaration = Declaration.objects.update_or_create(**row)
-                self.stdout.write(str(declaration[0]))
+                declaration, created = Declaration.objects.update_or_create(**row)
+                if created:
+                    self.stdout.write("Create: %s" % str(declaration))
+                else:
+                    self.stdout.write("Update: %s" % str(declaration))

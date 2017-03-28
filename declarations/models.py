@@ -9,7 +9,7 @@ class Declaration(models.Model):
     position = models.CharField(max_length=512, null=True)
     residence = models.CharField(max_length=512, null=True)
     link_pdf = models.CharField(max_length=256, null=True)
-    checked = models.BooleanField()
+    checked = models.BooleanField(default=False)
 
     def __str__(self):
         return self.last_name + " (" + self.workplace + ")"
