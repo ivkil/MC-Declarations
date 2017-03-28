@@ -8,7 +8,6 @@ class Declaration(models.Model):
     workplace = models.CharField(max_length=1024, null=True)
     position = models.CharField(max_length=512, null=True)
     residence = models.CharField(max_length=512, null=True)
-    link_pdf = models.CharField(max_length=256, null=True)
     checked = models.BooleanField(default=False)
 
     def __str__(self):
