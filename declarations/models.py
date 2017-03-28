@@ -16,4 +16,5 @@ class Declaration(models.Model):
         return self.last_name + " (" + self.workplace + ")"
 
     def link_nacp(self):
-        return "https://public.nazk.gov.ua/declaration/%s" % self.id
+        # return "https://public.nazk.gov.ua/declaration/%s" % self.id
+        return "https://declarations.com.ua/declaration/nacp_%s" % self.id
