@@ -17,6 +17,7 @@ media/
 rcvd_info/
 development_notes/
 # additional settings
+settings_secret.py
 settings_local.py
 # Distribution / packaging
 .Python
