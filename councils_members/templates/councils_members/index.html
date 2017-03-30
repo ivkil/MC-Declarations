@@ -11,7 +11,7 @@
                 source: "/councils/autocomplete",
                 minLength: 2,
                 select: function (event, ui) {
-                    window.open("/councils/" + ui.item.data, "_blank");
+                    window.open("/councils/" + ui.item.data, "_self");
                     this.value = "";
                     return false;
                 }
