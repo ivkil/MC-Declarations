@@ -28,4 +28,7 @@
         <input class="form-control" type="search" placeholder="Новороздільська міська рада" id="autocomplete"
                maxlength="128">
     </div>
+    {% load static %}
+    <div class="navbar navbar-fixed-bottom text-center"><a href="{% static 'councils_members/declarations.csv' %}">
+        Завантажити інформацію в форматі CSV</a></div>
 {% endblock content %}
