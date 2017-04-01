@@ -3,7 +3,7 @@ import datetime
 
 from django.core.management.base import BaseCommand, CommandError
 
-from councils_members.models import Region, CouncilType, Council, MemberCouncil
+from councils_members.models import Region, CouncilType, Council, Person
 from declarations.models import Declaration
 
 

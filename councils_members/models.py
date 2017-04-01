@@ -35,9 +35,9 @@ class Council(models.Model):
         return self.title
 
 
-class MemberCouncil(models.Model):
+class Person(models.Model):
     name = models.CharField(max_length=128)
-    council = models.ForeignKey(Council, on_delete=models.CASCADE)
+    council = models.ForeignKey(Council, null=True)
     citizenship = models.CharField(max_length=32)
     date_of_birth = models.DateField()
     education = models.CharField(max_length=128)

@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from django.core.management.base import BaseCommand
 from django.db.models import Q
 
-from councils_members.models import MemberCouncil
+from councils_members.models import Person
 from declarations.models import Declaration, Decommunization
 
 
@@ -38,7 +38,7 @@ class Command(BaseCommand):
             index += 1
             self.stdout.write("Working on declaration %s of %s total" % (index, total))
             name = declaration.last_name + " " + declaration.first_name
-            q = MemberCouncil.objects.filter(name__icontains=name)
+            q = Person.objects.filter(name__icontains=name)
             if q.exists():
                 rs = (grequests.get(u) for u in get_urls(declaration.id))
                 resps = grequests.map(rs)

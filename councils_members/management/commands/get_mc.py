@@ -3,7 +3,7 @@ import datetime
 
 from django.core.management.base import BaseCommand, CommandError
 
-from councils_members.models import Region, CouncilType, Council, MemberCouncil
+from councils_members.models import Region, CouncilType, Council, Person
 
 
 class Command(BaseCommand):
@@ -26,7 +26,7 @@ class Command(BaseCommand):
                 else:
                     council = Council.objects.create(region=region, type=council_type, title=row['council'])
 
-                q = MemberCouncil.objects.filter(
+                q = Person.objects.filter(
                     name=row['cm_name'],
                     council__id=council.id,
                     citizenship=row['cm_citizenship'],
@@ -37,7 +37,7 @@ class Command(BaseCommand):
                     residence=row['cm_residence']
                 )
                 if not q.exists():
-                    mc = MemberCouncil.objects.create(
+                    mc = Person.objects.create(
                         name=row['cm_name'],
                         council=council,
                         citizenship=row['cm_citizenship'],

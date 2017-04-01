@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from councils_members.models import MemberCouncil, Council
+from councils_members.models import Person, Council
 
 
 class CouncilAdmin(admin.ModelAdmin):
@@ -8,10 +8,10 @@ class CouncilAdmin(admin.ModelAdmin):
     list_filter = ('region__title', 'type')
 
 
-class MemberCouncilAdmin(admin.ModelAdmin):
+class PersonAdmin(admin.ModelAdmin):
     search_fields = ('name', 'council__title')
     raw_id_fields = ('council', 'declaration')
 
 
 admin.site.register(Council, CouncilAdmin)
-admin.site.register(MemberCouncil, MemberCouncilAdmin)
+admin.site.register(Person, PersonAdmin)
