@@ -11,7 +11,6 @@ class CouncilAdmin(admin.ModelAdmin):
 class MemberCouncilAdmin(admin.ModelAdmin):
     search_fields = ('name', 'council__title')
     raw_id_fields = ('council', 'declaration')
-    exclude = ('citizenship', 'party', 'education')
 
 
 admin.site.register(Council, CouncilAdmin)
