@@ -32,7 +32,7 @@ class Council(models.Model):
         ordering = ["title"]
 
     def __str__(self):
-        return self.title + " (" + self.region.title + ")"
+        return self.title
 
 
 class MemberCouncil(models.Model):

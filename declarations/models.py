@@ -13,11 +13,14 @@ class Declaration(models.Model):
     checked = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.last_name + " (" + self.workplace + ")"
+        result = self.last_name + " " + self.first_name
+        if self.residence:
+            result += " (" + self.residence + ")"
+        return result
 
     def link_nacp(self):
-        # return "https://public.nazk.gov.ua/declaration/%s" % self.id
-        return "https://declarations.com.ua/declaration/nacp_%s" % self.id
+        return "https://public.nazk.gov.ua/declaration/%s" % self.id
+        # return "https://declarations.com.ua/declaration/nacp_%s" % self.id
 
 
 class Decommunization(models.Model):

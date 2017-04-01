@@ -9,3 +9,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^about/', views.about, name='about'),
 ]
+
+admin.site.site_header = 'Statky Depiv'
