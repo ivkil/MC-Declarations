@@ -19,17 +19,18 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
-        next_page = options['page_from'][0]
+        next_page = int(options['page_from'][0])
         update = options['update']
         headers = {"Content-Type": "application/json"}
         while True:
             sleep(1)
             self.stdout.write("Fetching page #%s" % next_page)
             r = requests.get("https://public-api.nazk.gov.ua/v1/declaration/?page=%s" % next_page,
-                             headers=headers).raise_for_status()
+                             headers=headers)
+            r.raise_for_status()
             resp = r.json()
             if "error" not in resp:
-                if self.proceed_with_response(resp["items"], update):
+                if self.proceed_with_response(resp["items"], update) or update:
                     next_page += 1
                 elif not update:
                     self.stdout.write("Finish updating declarations")
