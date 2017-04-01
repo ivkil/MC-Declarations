@@ -18,3 +18,12 @@ class Declaration(models.Model):
     def link_nacp(self):
         # return "https://public.nazk.gov.ua/declaration/%s" % self.id
         return "https://declarations.com.ua/declaration/nacp_%s" % self.id
+
+
+class Decommunization(models.Model):
+    type = models.CharField(max_length=32)
+    old_title = models.CharField(max_length=512)
+    new_title = models.CharField(max_length=512)
+
+    def __str__(self):
+        return self.old_title + " - " + self.new_title

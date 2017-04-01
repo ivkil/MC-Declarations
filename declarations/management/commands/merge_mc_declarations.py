@@ -1,12 +1,12 @@
-import datetime
 import re
 
 import grequests
 from bs4 import BeautifulSoup
 from django.core.management.base import BaseCommand
+from django.db.models import Q
 
 from councils_members.models import MemberCouncil
-from declarations.models import Declaration
+from declarations.models import Declaration, Decommunization
 
 
 def residence(r):
@@ -21,6 +21,10 @@ def residence(r):
 
 def same_residence(mc_residence, decl_residence):
     decl_residence = decl_residence.split(' / ', 1)[0].lstrip()
+    q = Decommunization.objects.filter(Q(type="місто") | Q(type="смт") | Q(type="селище"),
+                                       new_title__iexact=decl_residence)
+    if q.exists():
+        decl_residence = q.first().old_title
     return re.search(decl_residence, mc_residence, re.IGNORECASE)
 
 
