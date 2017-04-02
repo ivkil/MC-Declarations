@@ -48,7 +48,9 @@ class Person(models.Model):
 
     class Meta:
         ordering = ["name"]
-        verbose_name_plural = "members of councils"
 
     def __str__(self):
-        return self.name + " (" + self.council.title + ")"
+        result = self.name + " (" + self.residence.lstrip() + ")"
+        if self.council:
+            result += " - " + self.council.title
+        return result
