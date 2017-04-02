@@ -5,7 +5,7 @@
     <h5 class="text-center">{{ council.region.title }}</h5>
     <br>
     <ul class="list-group">
-        {% for mc in council.person_set.all %}
+        {% for mc in active_mcs %}
             {% if mc.declaration %}
                 <a href="{{ mc.declaration.link_nacp }}" target="_blank"
                    class="list-group-item list-group-item-success">

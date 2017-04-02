@@ -37,7 +37,8 @@ class Council(models.Model):
 
 class Person(models.Model):
     name = models.CharField(max_length=128)
-    council = models.ForeignKey(Council, null=True)
+    council = models.ForeignKey(Council)
+    active_member_council = models.BooleanField(default=False)
     citizenship = models.CharField(max_length=32)
     date_of_birth = models.DateField()
     education = models.CharField(max_length=128)
@@ -50,7 +51,4 @@ class Person(models.Model):
         ordering = ["name"]
 
     def __str__(self):
-        result = self.name + " (" + self.residence.lstrip() + ")"
-        if self.council:
-            result += " - " + self.council.title
-        return result
+        return self.name + " (" + self.council.title + ")"
