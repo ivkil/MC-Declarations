@@ -38,7 +38,7 @@ class Command(BaseCommand):
             index += 1
             self.stdout.write("Working on declaration %s of %s total" % (index, total))
             name = declaration.last_name + " " + declaration.first_name
-            q = Person.objects.filter(name__icontains=name)
+            q = Person.objects.filter(name__icontains=name, active_member_council=True)
             if q.exists():
                 rs = (grequests.get(u) for u in get_urls(declaration.id))
                 resps = grequests.map(rs)
