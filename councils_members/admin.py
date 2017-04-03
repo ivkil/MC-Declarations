@@ -18,6 +18,7 @@ class PersonAdmin(admin.ModelAdmin):
     search_fields = ('name', 'council__title')
     list_filter = ('active_member_council',)
     raw_id_fields = ('council', 'declaration')
+    readonly_fields = ('declaration',)
 
     actions = [find_declaration]
 
